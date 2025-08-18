@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- กันแคชด้วย meta -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title data-th="คู่มือใช้งานแอป" data-en="App User Guide">คู่มือใช้งานแอป</title>
+  <style>
+    :root {
+      --primary: #FF914D;
+      --bg: #fefaf6;
+      --text: #222;
+      --subtext: #666;
+      --card: #fff;
+    }
+
+    .dark {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --subtext: #aaa;
+      --card: #1e1e1e;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      background-color: var(--primary);
+      color: white;
+      position: relative;
+    }
+
+    .toggle-mode,
+    .toggle-lang {
+      position: absolute;
+      top: 1rem;
+      background: white;
+      color: #333;
+      padding: 5px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .toggle-mode {
+      right: 1rem;
+    }
+
+    .toggle-lang {
+      left: 1rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    header p {
+      margin: 0.25rem 0 0;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 1rem;
+      gap: 2rem;
+    }
+
+    .sidebar {
+      width: 180px;
+      position: sticky;
+      top: 100px;
+      align-self: flex-start;
+    }
+
+    .sidebar h3 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+    }
+
+    .sidebar a {
+      display: block;
+      margin: 0.5rem 0;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13px
+    }
+    /*font-size: 0.9rem;*/
+    .sidebar a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .section {
+      flex: 1;
+    }
+
+    .feature {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feature h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .feature p {
+      color: var(--subtext);
+      font-size: 0.95rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .mobile-mockup {
+      width: 240px;
+      height: 480px;
+      background: #000;
+      border-radius: 32px;
+      padding: 12px;
+      box-shadow: inset 0 0 0 2px #333, 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin: 1rem 0;
+      position: relative;
+    }
+
+    .mobile-mockup::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 6px;
+      background: #444;
+      border-radius: 3px;
+    }
+
+    .mobile-screen {
+      width: 98%;
+      height: 98%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .mobile-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--subtext);
+      padding: 2rem 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        position: static;
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+      
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false">
+
+  <header>
+    <div class="toggle-lang" onclick="toggleLanguage()">🌐 TH / EN</div>
+    <div class="toggle-mode" onclick="toggleMode()">🌓 สลับโหมด</div>
+    <h1 data-th="📱คู่มือใช้งาน BCS Phase 1.75" data-en="📱User Guide: BCS Phase 1.75">
+      📱คู่มือ BCS Phase 1.75</h1>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <h3>BCS</h3>
+      <a href="#"onclick="myFunction(Detail)">รายละเอียด Migration</a>
+      <a href="#" onclick="toggleSubMenu(event, 'submenu-1')" style="cursor:pointer;" class="massageC">ประเภทลูกค้า : Migrated▸</a>
+      <div id="submenu-1" style="margin-left: 1rem; display: none;">
+        <a href="#" onclick="myFunction(migrateCustomer)">TAB ข้อมูลลูกค้า</a>
+        <a href="#" onclick="myFunction(migrateAccountCustomer)">TAB ข้อมูลบัญชีลูกค้า</a>
+        <a href="#" onclick="myFunction(migrateSubCustomer)">Sub Menu ข้อมูลบัญชีลูกค้า</a>
+        <a href="#" onclick="myFunction(migrateSubOther)">Sub Menu ข้อมูลอื่นๆ</a>
+      </div>
+      <a href="#" onclick="toggleSubMenu(event, 'submenu-2')" style="cursor:pointer;">ประเภทลูกค้า : Not Migrated▸</a>
+      <div id="submenu-2" style="margin-left: 1rem; display: none;">
+        <a href="#feature-6">TAB ข้อมูลลูกค้า</a>
+        <a href="#feature-7">TAB ข้อมูลบัญชีลูกค้า</a>
+        <a href="#feature-8">Sub Menu ข้อมูลบัญชีลูกค้า</a>
+        <a href="#feature-9">Sub Menu ข้อมูลอื่นๆ</a>
+      </div>
+      <a href="#" onclick="toggleSubMenu(event, 'submenu-3')" style="cursor:pointer;">ประเภทลูกค้า : Waiting Migrated▸</a>
+      <div id="submenu-3" style="margin-left: 1rem; display: none;">
+        <a href="#feature-10">TAB ข้อมูลลูกค้า</a>
+        <a href="#feature-11">TAB ข้อมูลบัญชีลูกค้า</a>
+        <a href="#feature-12">Sub Menu ข้อมูลบัญชีลูกค้า</a>
+        <a href="#feature-13">Sub Menu ข้อมูลอื่นๆ</a>
+      </div>
+      <a href="#" onclick="toggleSubMenu(event, 'submenu-4')" style="cursor:pointer;">Profile Change ▸</a>
+        <div id="submenu-4" class="submenu" style="margin-left: 1rem; display: none;">
+        <a href="#" onclick="myFunction(migrateProfileChange)">BCS Profile Change</a>
+        
+      <!-- Change Payment Method with its own submenu -->
+        <a href="#" onclick="toggleSubMenu(event, 'submenu-change-payment')" style="cursor:pointer;">Change Payment Method ▸</a>
+        <div id="submenu-change-payment" class="submenu" style="margin-left: 1rem; display: none;">
+        <a href="#" onclick="myFunction(cashToBank)">Cash to Bank Debit</a>
+        <a href="#" onclick="myFunction(bankToCash)">Bank Debit to Cash</a>
+        <a href="#" onclick="myFunction(bankToBank)">Bank Debit to Bank Debit</a>
+        <a href="#" onclick="myFunction(creditToCash)">Credit Card to Cash</a>
+        <a href="#" onclick="myFunction(creditToBank)">Credit Card to Bank Debit</a>
+        </div>
+        </div>
+      
+      <a href="#feature-2" onclick="myFunction(x1)">กลับหน้าหลัก</a>
+    </nav>
+
+    <!-- รายละเอียด Migration -->
+    <div class="section" id="Detail">
+      <!-- feature-1 -->
+      <div class="feature" id="feature-1">
+        <h2>
+          บริการที่ยังคงใช้งานได้ที่ BCS หลังทำการ Migrated แล้ว
+        </h2>
+        <!-- รูป -->
+        <div style="gap: 1.5rem; font-size: 0.85rem;">
+          <br>&#8226; วิธีการชำระเงิน (Payment Method)</br>
+          <br>&#8226; ชำระเงิน</br>
+          <br>&#8226; หักบัญชี</br>
+          <br>&#8226; ใบแจ้งหนี้</br>
+          <br>&#8226; ติดตามหนี้</br>
+          <br>&#8226; ข้อมูล Consent</br>
+          <br>&#8226; รายการของพรีเมี่ยม</br>
+          <br>&#8226; Traffic Monitor</br>
+          <br>&#8226; บริการ Hotspot</br>
+          <br>&#8226; ของรางวัล</br>
+          <br>&#8226; 3BB Reward</br>
+          <br>&#8226; 3BB Coin</br>
+          <br>&#8226; ชำระล่วงหน้าแบบมีส่วนลด (Advance Promotion) - สำหรับลูกค้าประเภทนิติบุคคล (Non-Residential) เท่านั้น</br>
+          <br><h3 style="color: #ff0000;">* บริการนอกเหนือจากรายละเอียดด้านบน กรุณาเข้าใช้งานจากระบบของ AIS</h3></br>
+        </div>
+      </div>
+    </div>
+
+     <!-- ประเภทลูกค้า : Migrated TAB ข้อมูลลูกค้า-->
+    <div class="section" id="migrateCustomer" style="display: none">
+      <!-- feature-1 -->
+      <div class="feature" id="feature-1">
+        <h2>
+          ข้อมูลบริการลูกค้า
+        </h2>
+        <!-- รูป -->
+        <div>
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FMigrate%2F%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%B2%E0%B8%A3.png?alt=media&token=4955865b-ff44-40eb-97ee-1fa95bbe41ed" alt="Dog"
+            style="width: 100%; height: 100%">
+            <img>
+        </div> 
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          ข้อมูลลูกค้า
+        </h2>
+        <!-- รูป -->
+        <div>
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FMigrate%2F%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%A5%E0%B8%B9%E0%B8%81%E0%B8%84%E0%B9%89%E0%B8%B2.png?alt=media&token=dfb07afb-287c-423e-b7ea-c6558ed3f692" alt="Dog"
+            style="width: 100%; height: 100%">
+          <img>
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          ข้อมูลคำร้อง
+        </h2>
+        <!-- รูป -->
+        <div>
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FMigrate%2F%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B8%84%E0%B8%B3%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%87.png?alt=media&token=232d6596-0e51-465e-9731-20a51980c0e1" alt="Dog"
+            style="width: 100%; height: 100%">
+          <img>
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          Summary Statement
+        </h2>
+        <!-- รูป -->
+        <div>
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FMigrate%2Fsummary_statement.png?alt=media&token=0e31e4c5-454e-404a-a4db-a57214cf238a" alt="Dog"
+            style="width: 100%; height: 100%">
+          <img>
+        </div>
+      </div>
+        <div class="feature" id="feature-1">
+          <h2>
+            แผนที่
+        </h2>
+        <!-- รูป -->
+        <div>
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FMigrate%2F%E0%B9%81%E0%B8%9C%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88.png?alt=media&token=be6fbd59-ce49-4b1e-a512-de1f7d62159f" alt="Dog"
+            style="width: 100%; height: 100%">
+          <img>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ประเภทลูกค้า : Migrated TAB ข้อมูลบัญชีลูกค้า-->
+    <div class="section" style="display: none" id="migrateAccountCustomer">
+      <!-- feature-1 -->
+      <div class="feature" id="feature-1">
+        <h2>
+          TAB ข้อมูลบัญชีลูกค้า
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          xxxxxxx
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- ประเภทลูกค้า : Migrated Sub Menu ข้อมูลบัญชีลูกค้า-->
+    <div class="section"style="display: none" id="migrateSubCustomer">
+      <!-- feature-1 -->
+      <div class="feature" id="feature-1">
+        <h2>
+          Sub Menu ข้อมูลบัญชีลูกค้า
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          xxxxxxx
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ประเภทลูกค้า : Migrated Sub Menu ข้อมูลอื่นๆ-->
+    <div class="section" style="display: none" id="migrateSubOther">
+      <!-- feature-1 -->
+      <div class="feature" id="feature-1">
+        <h2>
+          Sub Menu ข้อมูลอื่นๆ
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          xxxxxxx
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+
+        </div>
+      </div>
+    </div>
+
+
+    <!--Profile Change-->
+    <div class="section" style="display: none" id="migrateProfileChange">
+      <!-- feature-1 -->
+      <div class="feature" id="feature-2">
+        <h2>
+          BCS Profile Change
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          การเปลี่ยนแปลงข้อมูลส่วนตัวของลูกค้าในระบบ BCS
+        </p>
+      </div>
+      <div class="feature" id="feature-2">
+        <h2>
+          Change Bill Name
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          มีการปิดปุ่มแก้ไข Bill Name (disable)
+          <br></br>
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange-Bill-name.png?alt=media&token=3122d1be-821e-4b6b-be1a-7dc839ca1992"
+            alt="Change Bill Name" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-2">
+        <h2>
+          Vat Address
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          มีการปิดปุ่มแก้ไข Vat address (disable)
+          <br></br>
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FVAT-address.png?alt=media&token=f5efe7f2-9bbd-43a0-a5d4-5fcd8bb0af0c"
+            alt="Change Bill Name" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-2">
+        <h2>
+          Bill Cycle
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          มีการปิดปุ่มแก้ไข Bill Cycle (disable)
+          <br></br>
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FBill-Cycle.png?alt=media&token=be8746d5-3e81-4f47-bff6-9037d209e511"
+            alt="Change Bill Name" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-2">
+        <h2>
+          Bill Address
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          มีการปิดปุ่มแก้ไข Bill Address (disable)
+          <br></br>
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FBill-address.png?alt=media&token=acee0fc2-ffd5-49d1-96c8-84f8d5aa7076"
+            alt="Change Bill Name" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-2">
+        <h2>
+          Account (Bill Name)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          มีการปิดปุ่มแก้ไข Account (Bill Name) (disable)
+          <br></br>
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FAccount-Bill-Name.png?alt=media&token=503a598e-63b5-4b44-9161-de4eca674344"
+            alt="Change Bill Name" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-2">
+        <h2>
+          Account (Bill Media)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          มีการปิดปุ่มแก้ไข Account (Bill Media) (disable)
+          <br></br>
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FBill-Media.png?alt=media&token=af32181d-ea24-43bd-9bef-3f54ad1cfaaa"
+            alt="Change Bill Name" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-2">
+        <h2>
+          Change Contact Mobile
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+          มีการปิดปุ่มแก้ไข Change Contact Mobile (disable)
+          <br></br>
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange-Mobile.png?alt=media&token=f4e47c83-9b05-478b-8354-4c770e7a6b8f"
+            alt="Change Bill Name" style="width: 100%; height: 100%">
+        </div>
+      </div>
+    </div>
+
+
+    <!--Change Payment method-->
+    <div class="section" style="display: none" id="migratePaymentChange">
+      <!-- feature-1 -->
+      <div class="feature" id="feature-1">
+        <h2>
+          Change payment method
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+
+        </div>
+        
+      </div>
+    </div>
+    
+
+    <!-- Cash To Bank -->
+    <div class="section" style="display: none" id="cashToBank">  
+      <div class="feature" id="feature-1">
+        <h2>
+          หน้าจอ Change Payment Method บน BCS
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FIcon-change-payment-method.png?alt=media&token=edd17f6f-37c9-4279-8598-bcf48b9c8770"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          หน้าวิธีการชำระเงิน (Cash)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FcashToBank1.png?alt=media&token=1fcdad83-19ad-41c0-91b1-6ad3ebc4ce16"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          หน้าเปลี่ยนวิธีการชำระเงิน
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FcashTobank1.5.png?alt=media&token=7625ab91-89ac-4d4b-a82b-4c9df65ea166"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          ปุ่ม Drop Down เลือกวิธีการชำระเงินใหม่
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FcashToBank1.6.png?alt=media&token=c9c64c94-13de-416d-a89d-6022ea165a9f"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          หักผ่านบัญชีธนาคาร (Bank Debit)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FcashToBank2.png?alt=media&token=a7d93ff1-e1bb-4c10-8593-64f4292b99d7"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          Popup ยืนยันการเปลี่ยนแปลงวิธีการชำระเงิน
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2Fpopup-%E0%B8%A2%E0%B8%B7%E0%B8%99%E0%B8%A2%E0%B8%B1%E0%B8%99.png?alt=media&token=47037a8b-4650-40b9-a60a-c3bcf8102ba8"
+            alt="มีการเปลี่ยนแปลง" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          Popup แจ้งเตือนสถานะการเปลี่ยนแปลงวิธีการชำระเงิน
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2F%E0%B8%81%E0%B8%94%E0%B8%9B%E0%B8%B8%E0%B9%88%E0%B8%A1%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%B6%E0%B8%812.png?alt=media&token=ba346267-667c-4937-9356-bf8b9913add9"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          หน้าวิธีการชำระเงินหลังการ Change Payment Method (Bank Debit)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2F%E0%B8%99%E0%B8%B4%E0%B8%A3%E0%B8%B2-success.png?alt=media&token=11c219cb-9f25-4a83-a7d1-98b1dbba8851"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+    </div>
+      
+    
+    <!-- Bank To Cash -->
+    <div class="section" style="display: none" id="bankToCash">
+        <div class="feature" id="feature-1">
+        <h2>
+          Bank To Cash
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+          <div style="display: flex; gap: 1rem;">
+          </div>   
+        </div>
+        <div class="feature" id="feature-1">
+        <h2>
+          หน้าวิธีการชำระเงิน (Bank Debit)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToCash%2Fprofile-1.png?alt=media&token=e9f945f5-4eee-408b-b88d-294c5178f600"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          หน้าเปลี่ยนวิธีการชำระเงิน
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToCash%2Fpage-2.png?alt=media&token=7002cfd2-e7bf-4033-897c-713b9c1a9406"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          ปุ่ม Drop Down เลือกวิธีการชำระเงินใหม่
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToCash%2FDrop-Down.png?alt=media&token=6fb82a4b-46b6-4ffc-94bc-506167889d53"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          หักผ่านบัญชีธนาคาร (เงินสด)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToCash%2Fselect-cash.png?alt=media&token=35f519b6-33a7-42e6-8ef8-a4c5d0398701"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          Popup ยืนยันการเปลี่ยนแปลงวิธีการชำระเงิน
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToCash%2Fpop-up-%E0%B8%A2%E0%B8%B7%E0%B8%99%E0%B8%A2%E0%B8%B1%E0%B8%99.png?alt=media&token=aee63d58-922e-4bde-98f7-fe37e4dcdae4"
+            alt="มีการเปลี่ยนแปลง" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          หน้าวิธีการชำระเงินหลังการ Change Payment Method (ฺCash)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToCash%2Fprofile-cash.png?alt=media&token=58cac83e-ce08-45d6-b02e-a53094d25005"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      </div> 
+
+
+      <!-- Bank Debit To Bank Debit -->
+      <div class="section" style="display: none" id="bankToBank">
+        <div class="feature" id="feature-1">
+        <h2>
+          Bank Debit To Bank Debit
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+          <div style="display: flex; gap: 1rem;">
+
+          </div>   
+        </div>
+        <div class="feature" id="feature-1">
+        <h2>
+          หน้าวิธีการชำระเงิน (Bank Debit)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToBank%2FScreenshot%202025-08-18%20105909.png?alt=media&token=3d456239-b14a-4698-a257-fc9b12aad9f0"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          หน้าเปลี่ยนวิธีการชำระเงิน
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToBank%2FScreenshot%202025-08-18%20105919.png?alt=media&token=47412bb1-e16f-4e8f-819f-2a9b1e7ab664"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          ปุ่ม Drop Down เลือกวิธีการชำระเงินใหม่
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToBank%2FScreenshot%202025-08-18%20105925.png?alt=media&token=6135bf9d-abb3-4044-97d2-24dc5291ee08"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          เลือกวิธีการชำระเงินใหม่ Bank Debit
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToBank%2FScreenshot%202025-08-18%20110112.png?alt=media&token=86387b33-0570-44bd-9116-8159b0f4caa7"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          Waiting complete
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToBank%2FScreenshot%202025-08-18%20110559.png?alt=media&token=86ed301e-dd8e-4752-9555-8e4bf7d689f7"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      <div class="feature" id="feature-1">
+        <h2>
+          หน้าวิธีการชำระเงินหลังการ Change Payment Method (Bank Debit)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+        <div style="display: flex; gap: 1rem;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FBankToBank%2FScreenshot%202025-08-18%20110827.png?alt=media&token=3edb6172-3a66-4fe8-a5cc-ee33d42778d2"
+            alt="Cash To Bank" style="width: 100%; height: 100%">
+        </div>
+      </div>
+      </div>
+      
+      
+      <!-- Credit Card To Cash -->
+      <div class="section" style="display: none" id="creditToCash">
+        <div class="feature" id="feature-1">
+        <h2>
+          Credit Card To Cash
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+          <div style="display: flex; gap: 1rem;">
+
+          </div>   
+        </div>
+        <div class="section" style="display: none" id="creditToCash">
+        <div class="feature" id="feature-1">
+        <h2>
+          หน้าวิธีการชำระเงิน (Credit Card)
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+          <div style="display: flex; gap: 1rem;">
+            <img src="https://firebasestorage.googleapis.com/v0/b/bb-tester.firebasestorage.app/o/BCS%2FProfile%20Change%2FChange%20payment%20method%2FCredit%20Card%2FScreenshot%202025-08-18%20132512.png?alt=media&token=96a9c8ee-81eb-4a3b-9a34-1570ec160c46"
+              alt="Credit Card To Cash" style="width: 100%; height: 100">
+          </div>   
+        </div>
+      </div> 
+
+
+      <!-- Credit Card To Bank Debit -->
+      <div class="section" style="display: none" id="creditToBank">
+        <div class="feature" id="feature-1">
+        <h2>
+          Credit Card To Bank Debit
+        </h2>
+        <p style="margin: 0; color: #FF914D; font-weight: bold;">
+        </p>
+        <!-- รูป -->
+          <div style="display: flex; gap: 1rem;">
+
+          </div>   
+        </div>
+      </div> 
+
+  </div>
+
+
+  <footer data-th="© 2025 3BB App · อัปเดตล่าสุด: ส.ค. 2025 by 3BB Tester "
+    data-en="© 2025 3BB App · Last updated: Aug 2025 by 3BB Tester ">
+  </footer>
+
+  <script>
+  function myFunction(x) {
+    const section = document.querySelectorAll('.section');
+    
+    //x.style.display = (x.style.display === "none" ? "block" : "none");
+
+    // ซ่อนทุกภาพก่อน
+    section.forEach(section => section.style.display = 'none');
+    
+    // แสดงเฉพาะภาพที่เลือก
+    x.style.display = 'block';
+
+    //  console.log(section);
+  }
+ </script>
+ 
+  <script>
+    // --- ตั้ง dark mode เป็น default ---
+    const savedTheme = localStorage.getItem("theme");
+    if (!savedTheme || savedTheme === "dark") {
+      document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    }
+
+    // --- toggle ภาษา ---
+    function toggleLanguage() {
+      const currentLang = localStorage.getItem("lang") === "en" ? "th" : "en";
+      localStorage.setItem("lang", currentLang);
+      applyLanguage(currentLang);
+    }
+
+    function applyLanguage(lang) {
+      document.querySelectorAll("[data-th]").forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+
+      document.querySelectorAll("img[data-th-src]").forEach(img => {
+        const newSrc = img.getAttribute(`data-${lang}-src`);
+        if (newSrc) img.src = newSrc;
+      });
+
+      document.documentElement.lang = lang;
+    }
+
+    const savedLang = localStorage.getItem("lang") || "th";
+    applyLanguage(savedLang);
+
+    // --- toggle submenu ---
+    function toggleSubMenu(event, id) {
+      event.preventDefault();
+      const menu = document.getElementById(id);
+      if (menu.style.display === 'none') {
+        menu.style.display = 'block';
+        event.target.textContent = event.target.textContent.replace('▸', '▾');
+      } else {
+        menu.style.display = 'none';
+        event.target.textContent = event.target.textContent.replace('▾', '▸');
+      }
+    }
+
+    // --- ป้องกันคลิกขวา ---
+    //document.addEventListener('contextmenu', event => event.preventDefault());
+
+
+    // เรียกใช้ทุกครั้งที่โหลดหน้า
+    /*(async function preventCacheOnEveryVisit() {
+      // 1) ล้าง Service Worker และ Cache Storage (ถ้ามี)
+      try {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map(r => r.unregister()));
+        }
+        if (window.caches) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        }
+      } catch (e) {
+        // เงียบไว้ก็พอ
+      }
+
+      // 2) ใส่ cache-busting ให้ไฟล์ asset ทุกครั้ง (เวอร์ชันตาม timestamp)
+      const v = Date.now().toString();
+      const bust = url => url ? (url.includes('?') ? `${url}&v=${v}` : `${url}?v=${v}`) : url;
+
+      // stylesheet, script, รูปที่ติด data-nocache
+      document.querySelectorAll('link[rel="stylesheet"][href], script[src], img[data-nocache][src]')
+        .forEach(el => {
+          const attr = el.tagName === 'LINK' ? 'href' : 'src';
+          el.setAttribute(attr, bust(el.getAttribute(attr)));
+        });
+
+      // 3) ป้องกัน back-forward cache (บางกรณี browser เก็บหน้าไว้ตอนกดย้อน)
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+          // ถ้าหน้าถูกดึงจาก bfcache ให้รีโหลดแบบ no-store
+          location.replace(location.href.split('#')[0] + (location.search ? '&' : '?') + 'v=' + Date.now());
+        }
+      });
+    })();*/
+
+  </script>
+
+
+  <!-- Modal Video -->
+  <dialog id="videoDialog" style="padding:0; border:none; border-radius:12px; max-width: 90vw;">
+    <div id="videoWrap"
+      style="background:#000; border-radius:12px; overflow:hidden; position:relative; width: 90vw; max-width: 450px;">
+      <video id="modalVideo" controls playsinline
+        style="display:block; width:100%; height:auto; max-height:80vh; object-fit:contain; background:#000;">
+      </video>
+      <button type="button" onclick="closeVideoModal()"
+        style="position:absolute; top:8px; right:8px; background:rgba(255,255,255,.15); backdrop-filter:blur(4px); color:#fff; border:none; padding:.4rem .6rem; border-radius:8px; cursor:pointer;">
+        ปิด
+      </button>
+    </div>
+  </dialog>
+
+  <script>
+    function openVideoModal(src) {
+      const dlg = document.getElementById('videoDialog');
+      const vid = document.getElementById('modalVideo');
+      const wrap = document.getElementById('videoWrap');
+      if (!dlg || !vid || !wrap) return;
+
+      // รีเซ็ตก่อนใส่แหล่งใหม่ (กันค้าง/กันบั๊ก autoplay บางแพลตฟอร์ม)
+      vid.removeAttribute('src');
+      vid.load();
+
+      // ใส่แหล่งวิดีโอใหม่
+      vid.src = src;
+
+      // รอ metadata เพื่อรู้สัดส่วนจริง แล้วตั้ง aspect-ratio ของกล่อง
+      vid.addEventListener('loadedmetadata', function onMeta() {
+        vid.removeEventListener('loadedmetadata', onMeta);
+        const w = vid.videoWidth || 9;
+        const h = vid.videoHeight || 16;
+        wrap.style.aspectRatio = `${w} / ${h}`; // ปรับให้กรอบพอดีกับไฟล์จริง
+      });
+
+      // เล่นแบบเงียบถ้าอนุญาต (ไม่บังคับ)
+      vid.muted = true;
+      vid.play().catch(() => { });
+
+      // เปิด dialog
+      if (typeof dlg.showModal === 'function') {
+        dlg.showModal();
+      } else {
+        dlg.setAttribute('open', '');
+      }
+    }
+
+    function closeVideoModal() {
+      const dlg = document.getElementById('videoDialog');
+      const vid = document.getElementById('modalVideo');
+      if (vid) {
+        try { vid.pause(); } catch (e) { }
+        // ล้าง src เพื่อหยุดดาวน์โหลดบน iOS/บางเบราว์เซอร์
+        vid.removeAttribute('src');
+        vid.load();
+      }
+      if (dlg && dlg.open) dlg.close();
+    }
+  </script>
+
+</body>
+
+</html>
